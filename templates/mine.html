@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Dioxide Emission</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .table {
+      width: calc(33.33% - 10px);
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+    }
+    .table th, .table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+     h1 {
+      margin: 10px 600px 10px;
+    }
+  </style>
+</head>
+<body>
+<form action="{{ url_for('predict')}}"method="post">
+<h1>CO2 Emission for Rwanda </h1>
+  <div class="container">
+    <div class="row">
+        <table class="table" style= "width: calc(50% - 10px);">
+        <tr>
+          <th>Lat_Long_Year</th>
+        </tr>
+        <tr>
+          <td><input type="text" size="50" name="lat1"
+       placeholder="Latitude"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+              <input type="text" size="50" name="Long1"
+                placeholder="Longitude"  required="required"  style="border: 1px solid red; color: red; background-color: skyblue;" />
+              <input type="text" size="50" name="Year" placeholder="Year" required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+              <input type="text" size="50" name="Week no" placeholder="Week no" required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+        </td>
+        </tr>
+      </table>
+      <table class="table">
+        <tr>
+          <th>SulphurDioxide</th>
+        </tr>
+        <tr>
+          <td><input type="text" size="50" name="S1"
+                       placeholder="SulphurDioxide_SO2_column_number_density_amf" required="required"
+                       style="border: 1px solid red;  color: red; background-color: skyblue;"/>
+
+                <input type="text" size="50" name="S2"
+                      placeholder="SulphurDioxide_cloud_fraction" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="S3"
+                      placeholder="SulphurDioxide_sensor_azimuth_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="S4"
+                      placeholder="SulphurDioxide_sensor_zenith_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="S5"
+                      placeholder="SulphurDioxide_solar_azimuth_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="S6"
+                      placeholder="SulphurDioxide_solar_zenith_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" /></td>
+        </tr>
+      </table>
+      <table class="table">
+        <tr>
+          <th>Carbon Monoxide</th>
+        </tr>
+        <tr>
+          <td><input type="text" size="50" name="C1"
+                       placeholder="CarbonMonoxide_CO_column_number_density" required="required"
+                       style="border: 1px solid red;  color: red; background-color: skyblue;"/>
+
+                <input type="text" size="50" name="C2"
+                      placeholder="CarbonMonoxide_H2O_column_number_density" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="C3"
+                      placeholder="CarbonMonoxide_cloud_height" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="C4"
+                      placeholder="CarbonMonoxide_sensor_altitude" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="C5"
+                      placeholder="CarbonMonoxide_sensor_azimuth_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="C6"
+                      placeholder="CarbonMonoxide_sensor_zenith_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="C7"
+                      placeholder="CarbonMonoxide_solar_azimuth_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="C8"
+                      placeholder="CarbonMonoxide_solar_zenith_angle" required="required"
+                      style="border: 1px solid red; color: red; background-color: skyblue;" /></td>
+        </tr>
+      </table>
+
+    </div>
+
+    <div class="row">
+        <table class="table">
+        <tr>
+          <th>NitrogenDioxide</th>
+        </tr>
+        <tr>
+          <td>      <input type="text" size="50" name="N1"
+                        placeholder="NitrogenDioxide_tropospheric_NO2_column_number_density"
+                        required="required"  style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N2"
+                        placeholder="NitrogenDioxide_stratospheric_NO2_column_number_density"
+                        required="required"  style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N3"
+                        placeholder="NitrogenDioxide_NO2_slant_column_number_density"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N4"
+                        placeholder="NitrogenDioxide_tropopause_pressure"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N5"
+                        placeholder="NitrogenDioxide_absorbing_aerosol_index"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N6"
+                        placeholder="NitrogenDioxide_cloud_fraction"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N7"
+                        placeholder="NitrogenDioxide_sensor_altitude"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N8"
+                        placeholder="NitrogenDioxide_sensor_azimuth_angle"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N9"
+                        placeholder="NitrogenDioxide_sensor_zenith_angle"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                  <input type="text" size="50" name="N10"
+                        placeholder="NitrogenDioxide_solar_azimuth_angle"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+                  <input type="text" size="50" name="N11"
+                        placeholder="NitrogenDioxide_solar_zenith_angle"  required="required"
+                        style="border: 1px solid red; color: red; background-color: skyblue;" />
+          </td>
+        </tr>
+      </table>
+      <table class="table" style="width: calc(50% - 10px);">
+        <tr>
+          <th>Formaldehyde</th>
+        </tr>
+        <tr>
+          <td><input type="text" size="50" name="F1"
+       placeholder="Formaldehyde_tropospheric_HCHO_column_number_density_amf"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="F2"
+       placeholder="Formaldehyde_HCHO_slant_column_number_density"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="F3"
+       placeholder="Formaldehyde_cloud_fraction"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="F4"
+       placeholder="Formaldehyde_solar_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="F5"
+       placeholder="Formaldehyde_solar_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="F6"
+       placeholder="Formaldehyde_sensor_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="F7"
+       placeholder="Formaldehyde_sensor_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+</td>
+        </tr>
+      </table>
+      <table class="table" style="width: calc(50% - 10px);">
+        <tr>
+          <th>UvAerosolIndex</th>
+        </tr>
+        <tr>
+          <td><input type="text" size="50" name="U1"
+       placeholder="UvAerosolIndex_absorbing_aerosol_index"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="U2"
+       placeholder="UvAerosolIndex_sensor_altitude"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="U3"
+       placeholder="UvAerosolIndex_sensor_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="U4"
+       placeholder="UvAerosolIndex_sensor_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="U5"
+       placeholder="UvAerosolIndex_solar_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="U6"
+       placeholder="UvAerosolIndex_solar_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+        </td>
+        </tr>
+      </table>
+
+    </div>
+    <div class="row">
+        <table class="table" style="width: calc(50% - 10px);">
+        <tr>
+          <th>Ozone</th>
+        </tr>
+        <tr>
+          <td><input type="text" size="50" name="O1"
+            placeholder="Ozone_O3_column_number_density" required="required"
+            style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+                <input type="text" size="50" name="O2" placeholder="Ozone_O3_column_number_density_amf"
+                required="required"
+                style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="O3"
+       placeholder="Ozone_O3_slant_column_number_density"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="O4"
+       placeholder="Ozone_O3_effective_temperature"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="O5"
+       placeholder="Ozone_cloud_fraction"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="O6"
+       placeholder="Ozone_sensor_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="O7"
+       placeholder="Ozone_sensor_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="O8"
+       placeholder="Ozone_solar_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+<input type="text" size="50" name="O9"
+       placeholder="Ozone_sensor_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+</td>
+        </tr>
+      </table>
+        <table class="table" style="width: calc(50% - 10px);">
+            <tr>
+            <th>Cloud_cloud_fraction</th>
+            </tr>
+            <tr>
+            <td><input type="text" size="50" name="Cl1"
+       placeholder="Cloud_cloud_fraction"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl2"
+       placeholder="Cloud_cloud_top_pressure"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl3"
+       placeholder="Cloud_cloud_top_height"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl4"
+       placeholder="Cloud_cloud_base_pressure"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl5"
+       placeholder="Cloud_cloud_base_height"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl6"
+       placeholder="Cloud_cloud_optical_depth"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl7"
+       placeholder="Cloud_surface_albedo"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl8"
+       placeholder="Cloud_sensor_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl9"
+       placeholder="Cloud_sensor_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl10"
+       placeholder="Cloud_solar_azimuth_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+
+<input type="text" size="50" name="Cl11"
+       placeholder="Cloud_solar_zenith_angle"
+       required="required"
+       style="border: 1px solid red; color: red; background-color: skyblue;" />
+        </td>
+            </tr>
+    </table>
+
+            <button type="submit" class="btn btn-primary btn-block btn-large" style="color: blue;">Predict</button>
+        </form>
+    </div>
+      {{ prediction_text }}
+  </div>
+
+</body>
+</html>
